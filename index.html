@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RF-MVPs — Choose Your MVP</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 3rem 1rem; }
+    h1 { font-size: 2rem; margin-bottom: .5rem; }
+    .subtitle { color: #94a3b8; margin-bottom: 2.5rem; font-size: 1.05rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; width: 100%; max-width: 960px; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1.5rem; transition: transform .15s, border-color .15s; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-4px); border-color: #3b82f6; }
+    .card h2 { font-size: 1.15rem; margin-bottom: .5rem; }
+    .card p { color: #94a3b8; font-size: .9rem; flex: 1; margin-bottom: 1rem; }
+    .card a { display: inline-block; padding: .5rem 1rem; background: #3b82f6; color: #fff; text-decoration: none; border-radius: 6px; font-size: .85rem; font-weight: 600; align-self: flex-start; }
+    .card a:hover { background: #2563eb; }
+    .empty { text-align: center; color: #64748b; padding: 3rem; font-size: 1.1rem; }
+    footer { margin-top: 3rem; color: #475569; font-size: .8rem; }
+  </style>
+</head>
+<body>
+  <h1>RF-MVPs</h1>
+  <p class="subtitle">Select an MVP to explore its demo</p>
+
+  <div class="grid" id="mvp-grid">
+    <noscript><p class="empty">Enable JavaScript to load MVP listings.</p></noscript>
+  </div>
+
+  <footer>Powered by removefriction.net</footer>
+
+  <script>
+    const MVP_LIST = [
+      {
+        id: "sample-mvp",
+        name: "Sample MVP",
+        description: "A starter demo page showing the expected layout for each MVP entry.",
+        path: "/mvps/sample-mvp/"
+      }
+    ];
+
+    const grid = document.getElementById("mvp-grid");
+
+    if (MVP_LIST.length === 0) {
+      grid.innerHTML = '<p class="empty">No MVPs available yet. Check back soon.</p>';
+    } else {
+      MVP_LIST.forEach(mvp => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <h2>${mvp.name}</h2>
+          <p>${mvp.description}</p>
+          <a href="${mvp.path}">View Demo &rarr;</a>
+        `;
+        grid.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
