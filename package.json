@@ -1,0 +1,10 @@
+{
+  "name": "rf-mvps",
+  "version": "1.0.0",
+  "description": "Automated MVP creation platform",
+  "scripts": {
+    "test:e2e": "python3 tests/e2e/test_mvp_listing.py"
+  },
+  "devDependencies": {
+  }
+}
