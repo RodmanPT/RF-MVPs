@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workflow Automation - SaaS RevOps</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 20px; background: #eef2f3; }
+    h1 { color: #2c3e50; }
+    .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+    .status { margin-top: 20px; padding: 15px; border-left: 5px solid #2ecc71; background: #f9f9f9; }
+    .loading { color: #f39c12; border-left-color: #f39c12; }
+    button { padding: 10px 15px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #2980b9; }
+    button:disabled { background: #bdc3c7; cursor: not-allowed; }
+    ul { list-style-type: none; padding: 0; }
+    li { padding: 8px 0; border-bottom: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SaaS Customer Onboarding & RevOps</h1>
+    <p>Simulating automated end-to-end onboarding across 6 systems and AI support triage.</p>
+
+    <button id="start-onboarding">Start Automated Onboarding for New Customer</button>
+
+    <div id="onboarding-status" class="status" style="display: none;">
+      <h3>Onboarding Progress</h3>
+      <ul id="steps-list">
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const steps = [
+      "Creating account in HubSpot CRM...",
+      "Provisioning user in PostgreSQL...",
+      "Setting up billing in Stripe...",
+      "Initializing AI support triage in OpenAI...",
+      "Creating Retool dashboard access...",
+      "Onboarding complete across all 6 systems."
+    ];
+
+    document.getElementById('start-onboarding').addEventListener('click', function() {
+      this.disabled = true;
+      const statusDiv = document.getElementById('onboarding-status');
+      const stepsList = document.getElementById('steps-list');
+      statusDiv.style.display = 'block';
+      statusDiv.className = 'status loading';
+      stepsList.innerHTML = ''; // safe here, it's just clearing
+
+      let stepIndex = 0;
+
+      const interval = setInterval(() => {
+        if (stepIndex < steps.length) {
+          const li = document.createElement('li');
+          li.textContent = steps[stepIndex];
+          stepsList.appendChild(li);
+          stepIndex++;
+        } else {
+          clearInterval(interval);
+          statusDiv.className = 'status';
+          const successLi = document.createElement('li');
+          successLi.innerHTML = '<strong>Success! Manual revenue ops reduced by 60%.</strong>';
+          stepsList.appendChild(successLi);
+          document.getElementById('start-onboarding').disabled = false;
+        }
+      }, 800);
+    });
+  </script>
+</body>
+</html>
