@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operational Redesign - Manufacturing Dashboard</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 20px; background: #f4f4f9; }
+    h1 { color: #333; }
+    .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .alert { color: #d9534f; font-weight: bold; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <h1>Executive Dashboard: Real-time Manufacturing Operations</h1>
+  <p>Consolidated view across 5 plants. Reporting latency: 36 hours.</p>
+
+  <div class="dashboard">
+    <div class="card">
+      <h2>Variance Alerts</h2>
+      <ul id="alerts-list">
+        <li class="alert">Plant Alpha: Material yield dropped by 4%</li>
+        <li class="alert">Plant Gamma: Energy consumption spiked</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Plant Performance Overview</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Plant</th>
+            <th>Output</th>
+            <th>Target Met</th>
+          </tr>
+        </thead>
+        <tbody id="performance-data">
+          <tr><td>Alpha</td><td>10,200 units</td><td>98%</td></tr>
+          <tr><td>Beta</td><td>8,400 units</td><td>102%</td></tr>
+          <tr><td>Gamma</td><td>9,100 units</td><td>95%</td></tr>
+          <tr><td>Delta</td><td>11,500 units</td><td>105%</td></tr>
+          <tr><td>Epsilon</td><td>7,800 units</td><td>100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+    // Simulate real-time data update
+    setTimeout(() => {
+        const tr = document.createElement('tr');
+        const td1 = document.createElement('td'); td1.textContent = 'Sigma (New)';
+        const td2 = document.createElement('td'); td2.textContent = '1,000 units';
+        const td3 = document.createElement('td'); td3.textContent = '100%';
+        tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+        document.getElementById('performance-data').appendChild(tr);
+    }, 3000);
+  </script>
+</body>
+</html>

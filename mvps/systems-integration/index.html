@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Systems Integration - FinServ Compliance</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 20px; background: #e0f2f1; }
+    h1 { color: #004d40; }
+    .container { max-width: 700px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    .case { border: 1px solid #b2dfdb; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+    .badge { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; }
+    .badge-pending { background: #ffe082; color: #ff8f00; }
+    .badge-success { background: #a5d6a7; color: #2e7d32; }
+    .integration-flow { display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.9rem; color: #555; }
+    .step { text-align: center; flex: 1; position: relative; }
+    .step:not(:last-child)::after { content: '→'; position: absolute; right: -10px; top: 0; }
+    button { display: block; width: 100%; padding: 12px; background: #00796b; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; margin-top: 20px; }
+    button:hover { background: #004d40; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Integrated Compliance Workflow</h1>
+    <p>Simulating KYC checks integrated across 3 departments, reducing handling time by 45%.</p>
+
+    <div id="case-container">
+      <div class="case" id="case-1">
+        <h3>Case #9921 - Corporate Account Opening <span class="badge badge-pending" id="status-1">Pending KYC</span></h3>
+        <p>Customer: Global Trade LLC</p>
+        <div class="integration-flow">
+          <div class="step" id="step-1-1">Sales (Dynamics)</div>
+          <div class="step" id="step-1-2">Compliance (Logic Apps)</div>
+          <div class="step" id="step-1-3">Risk (Power Automate)</div>
+        </div>
+      </div>
+    </div>
+
+    <button id="run-integration">Run Automated KYC Integration</button>
+  </div>
+
+  <script>
+    document.getElementById('run-integration').addEventListener('click', function() {
+      this.disabled = true;
+      this.textContent = 'Processing Integration...';
+
+      const step1 = document.getElementById('step-1-1');
+      const step2 = document.getElementById('step-1-2');
+      const step3 = document.getElementById('step-1-3');
+      const status = document.getElementById('status-1');
+
+      setTimeout(() => { step1.style.fontWeight = 'bold'; step1.style.color = '#00796b'; }, 500);
+      setTimeout(() => { step2.style.fontWeight = 'bold'; step2.style.color = '#00796b'; }, 1500);
+      setTimeout(() => { step3.style.fontWeight = 'bold'; step3.style.color = '#00796b'; }, 2500);
+
+      setTimeout(() => {
+        status.className = 'badge badge-success';
+        status.textContent = 'KYC Approved';
+        document.getElementById('run-integration').textContent = 'Integration Complete';
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

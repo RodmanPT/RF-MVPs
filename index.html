@@ -37,24 +37,64 @@
         name: "Sample MVP",
         description: "A starter demo page showing the expected layout for each MVP entry.",
         path: "/mvps/sample-mvp/"
+      },
+      {
+        id: "operational-redesign",
+        name: "Operational Redesign — Manufacturing",
+        description: "Multi-site reporting rebuilt into a single operational view.",
+        path: "/mvps/operational-redesign/"
+      },
+      {
+        id: "workflow-automation",
+        name: "Workflow Automation — SaaS",
+        description: "Revenue operations automated end-to-end.",
+        path: "/mvps/workflow-automation/"
+      },
+      {
+        id: "data-reporting",
+        name: "Data & Reporting — Distribution",
+        description: "Inventory visibility restored across regions.",
+        path: "/mvps/data-reporting/"
+      },
+      {
+        id: "systems-integration",
+        name: "Systems Integration — Financial Services",
+        description: "Compliance workflows integrated into one flow.",
+        path: "/mvps/systems-integration/"
       }
     ];
 
     const grid = document.getElementById("mvp-grid");
 
+    // Clear the loading message
+    grid.innerHTML = '';
+
     if (MVP_LIST.length === 0) {
-      grid.innerHTML = '<p class="empty">No MVPs available yet. Check back soon.</p>';
+      grid.textContent = 'No MVPs available yet. Check back soon.';
+      grid.className = 'empty';
     } else {
+      const fragment = document.createDocumentFragment();
       MVP_LIST.forEach(mvp => {
         const card = document.createElement("div");
         card.className = "card";
-        card.innerHTML = `
-          <h2>${mvp.name}</h2>
-          <p>${mvp.description}</p>
-          <a href="${mvp.path}">View Demo &rarr;</a>
-        `;
-        grid.appendChild(card);
+
+        const title = document.createElement("h2");
+        title.textContent = mvp.name;
+
+        const desc = document.createElement("p");
+        desc.textContent = mvp.description;
+
+        const link = document.createElement("a");
+        link.setAttribute("href", mvp.path);
+        link.textContent = "View Demo \u2192";
+
+        card.appendChild(title);
+        card.appendChild(desc);
+        card.appendChild(link);
+
+        fragment.appendChild(card);
       });
+      grid.appendChild(fragment);
     }
   </script>
 </body>
